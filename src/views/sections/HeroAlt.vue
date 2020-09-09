@@ -2,7 +2,7 @@
   <v-theme-provider dark>
     <section id="hero-alt">
       <base-img
-        :height="$vuetify.breakpoint.mdAndUp ? 350 : 225"
+        :height="$vuetify.breakpoint.mdAndUp ? 225 : 150"
         :gradient="gradient"
         :src="src"
         color="#45516b"

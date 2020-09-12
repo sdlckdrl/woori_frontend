@@ -15,7 +15,7 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/',
+      path: '/web',
       component: () => import('@/layouts/home/Index.vue'),
       children: [
         {
@@ -48,7 +48,22 @@ const router = new Router({
         },
       ],
     },
-
+    {
+      path: '/super',
+      component: () => import('@/layouts/super/Index.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Login',
+          component: () => import('@/views/super/login/Index.vue'),
+        },
+        {
+          path: '*',
+          name: 'FourOhFour',
+          component: () => import('@/views/404/Index.vue'),
+        },
+      ],
+    },
   ],
 })
 

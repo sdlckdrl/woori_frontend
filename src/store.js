@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userInfo: null,
-    allUsers: [{
-      user_id: 'lsk0477', user_pw: 'sk6628gk',
-    }],
+    // allUsers: [{
+    //   user_id: 'lsk0477', user_pw: 'sk6628gk',
+    // }],
     isLogin: false,
     isLoginError: false,
   },

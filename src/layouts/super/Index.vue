@@ -1,6 +1,5 @@
 <template>
   <v-app>
-
     <super-view />
   </v-app>
 </template>

@@ -1,8 +1,19 @@
 // Imports
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 
 Vue.use(Router)
+
+const rejectAuthUser = (to, from, next) => {
+  if (store.state.isLogin === true) {
+    // 이미로그인된 유저
+    alert('이미 로그인을 하였습니다.')
+    next('/web')
+  } else {
+    next()
+  }
+}
 
 const router = new Router({
   mode: 'history',
@@ -53,8 +64,9 @@ const router = new Router({
       component: () => import('@/layouts/super/Index.vue'),
       children: [
         {
-          path: '',
+          path: 'login',
           name: 'Login',
+          beforeEnter: rejectAuthUser,
           component: () => import('@/views/super/login/Index.vue'),
         },
         {

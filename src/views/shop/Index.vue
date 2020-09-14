@@ -15,7 +15,7 @@
     mixins: [
       LoadSections([
         'hero-alt',
-        'shop-list'
+        'shop-list',
       ]),
     ],
 

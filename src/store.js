@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    login ({ state, commit }, loginObj) {
+    /* login ({ state, commit }, loginObj) {
       let selectedUser = null
       state.allUsers.forEach(user => {
         if (user.user_id === loginObj.user_id) selectedUser = user
@@ -32,9 +32,9 @@ export default new Vuex.Store({
       selectedUser === null || selectedUser.user_pw !== loginObj.user_pw
       ? commit('loginError')
       : commit('loginSuccess')
-    },
+    }, */
   },
-  modules: {
+  getters: {
 
   },
 })

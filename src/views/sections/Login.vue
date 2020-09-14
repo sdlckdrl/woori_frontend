@@ -78,12 +78,12 @@
     methods: {
       // ...mapActions(['login']),
       login () {
-        axios.post('https://reqres.in/api/login', {
+        axios.post('/api/super/login', {
           user_id: this.user_id,
           user_pw: this.user_pw,
         })
           .then(res => {
-            console.log(res)
+            this.$store.commit('loginSuccess', res.data)
           })
           .catch(err => {
             console.log(err)

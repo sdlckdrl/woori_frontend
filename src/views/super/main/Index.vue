@@ -14,7 +14,7 @@
 
     mixins: [
       LoadSections([
-        'login',
+        'main',
       ]),
     ],
 

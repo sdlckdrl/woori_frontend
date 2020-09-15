@@ -47,7 +47,7 @@
               <v-spacer />
               <v-btn
               color="primary"
-              @click="login()"
+              @click="login({ user_id : user_id, user_pw: user_pw })"
               >
                 Login
               </v-btn>
@@ -60,8 +60,7 @@
 </template>
 
 <script>
-  // import { mapState, mapActions } from 'vuex'
-  import { mapState } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
   import axios from 'axios'
 
   export default {
@@ -73,22 +72,10 @@
       }
     },
     computed: {
-      // ...mapActions(['isLogin', 'isLoginError']),
+      ...mapActions(['isLogin', 'isLoginError']),
     },
     methods: {
-      // ...mapActions(['login']),
-      login () {
-        axios.post('/api/super/login', {
-          user_id: this.user_id,
-          user_pw: this.user_pw,
-        })
-          .then(res => {
-            this.$store.commit('loginSuccess', res.data)
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      },
+      ...mapActions(['login']),
     },
   }
 </script>

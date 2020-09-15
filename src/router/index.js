@@ -14,6 +14,15 @@ const rejectAuthUser = (to, from, next) => {
     next()
   }
 }
+const onlyAuthUser = (to, from, next) => {
+  if (store.state.isLogin === false) {
+    // 아직 로그인 안 된 유저니까 막아야
+    alert('로그인이 필요한 기능입니다.')
+    next('/super/login')
+  } else {
+    next()
+  }
+}
 
 const router = new Router({
   mode: 'history',
@@ -63,6 +72,12 @@ const router = new Router({
       path: '/super',
       component: () => import('@/layouts/super/Index.vue'),
       children: [
+        {
+          path: '',
+          name: 'Main',
+          beforeEnter: onlyAuthUser,
+          component: () => import('@/views/super/main/Index.vue'),
+        },
         {
           path: 'login',
           name: 'Login',

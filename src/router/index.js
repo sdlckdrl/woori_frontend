@@ -9,7 +9,7 @@ const rejectAuthUser = (to, from, next) => {
   if (store.state.isLogin === true) {
     // 이미로그인된 유저
     alert('이미 로그인을 하였습니다.')
-    next('/web')
+    next('/super')
   } else {
     next()
   }
@@ -17,8 +17,13 @@ const rejectAuthUser = (to, from, next) => {
 const onlyAuthUser = (to, from, next) => {
   if (store.state.isLogin === false) {
     // 아직 로그인 안 된 유저니까 막아야
-    alert('로그인이 필요한 기능입니다.')
-    next('/super/login')
+    // 기다렸다 한번더 확인후 보냄
+    setTimeout(() => {
+      if (store.state.isLogin === false) {
+        alert('로그인이 필요한 기능입니다.')
+        next('/super/login')
+      }
+    }, 1000)
   } else {
     next()
   }

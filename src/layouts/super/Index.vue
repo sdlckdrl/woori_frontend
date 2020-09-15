@@ -31,6 +31,43 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>관리자</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+        <v-menu
+          transition="slide-y-transition"
+          bottom
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item>
+              <v-list-item-title v-if="isLogin">
+              <v-btn
+              @click="logout()"
+              >
+                로그아웃
+              </v-btn>
+              </v-list-item-title>
+              <v-list-item-title v-else>
+              <v-btn
+              router
+              :to="{name: 'Login'}"
+              >
+                로그인
+              </v-btn>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
     </v-app-bar>
 
     <v-main>{{$store.state.userInfo}}
@@ -44,6 +81,7 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   export default {
     name: 'SuperLayout',
 
@@ -53,13 +91,17 @@
     props: {
       source: String,
     },
-
     data: () => ({
       drawer: null,
     }),
-
     created () {
       this.$vuetify.theme.dark = true
+    },
+    computed: {
+      ...mapState(['isLogin']),
+    },
+    methods: {
+      ...mapActions(['logout']),
     },
   }
 </script>

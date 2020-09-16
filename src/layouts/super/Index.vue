@@ -6,7 +6,11 @@
       clipped
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item
+          link
+          router
+          :to="{name:'ItemManager'}"
+          >
           <v-list-item-action>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
@@ -70,9 +74,7 @@
 
     </v-app-bar>
 
-    <v-main>{{$store.state.userInfo}}
       <super-view />
-    </v-main>
 
     <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }}</span>

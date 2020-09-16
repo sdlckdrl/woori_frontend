@@ -1,15 +1,5 @@
 <template>
-  <base-section
-    id="main"
-    space="56"
-  >
-    <v-container
-      class="fill-height"
-      fluid
-    >
-      grgr
-    </v-container>
-  </base-section>
+<div>f</div>
 </template>
 
 <script>

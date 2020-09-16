@@ -84,6 +84,12 @@ const router = new Router({
           component: () => import('@/views/super/main/Index.vue'),
         },
         {
+          path: 'itemManager',
+          name: 'ItemManager',
+          beforeEnter: onlyAuthUser,
+          component: () => import('@/views/super/itemManager/Index.vue'),
+        },
+        {
           path: 'login',
           name: 'Login',
           beforeEnter: rejectAuthUser,

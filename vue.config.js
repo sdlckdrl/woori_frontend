@@ -1,5 +1,6 @@
 
 module.exports = {
+  lintOnSave : false,
   outputDir: 'D:\\project\\woori\\backend\\public',
   devServer: {
     proxy: {

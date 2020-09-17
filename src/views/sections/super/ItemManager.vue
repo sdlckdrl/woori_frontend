@@ -153,7 +153,6 @@
           .then(res => {
             if (res.data.result_code === 'success') {
               this.desserts = res.data.items
-            } else {
             }
           }).catch(() => {
             alert('에러')
@@ -167,8 +166,19 @@
       },
 
       deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+        if(!confirm('정말 삭제하시겠습니까?')) return;
+        var _desserts = this.desserts;
+        var index = _desserts.indexOf(item)
+        var row = _desserts[index];
+        axios
+          .post('/api/super/itemManager/remove/'+row._id)
+          .then(res => {
+            if (res.data.result_code === 'success') {
+              _desserts.splice(index, 1)
+            } 
+          }).catch(() => {
+            alert('에러')
+          }) 
       },
 
       close () {
@@ -180,19 +190,30 @@
       },
 
       save () {
-        if (this.editedIndex > -1) {
-          var obj = this.editedItem;      
+        if (this.editedIndex > -1) {          
+          var obj = this.editedItem;
+          var row = this.desserts[this.editedIndex];
           axios
-          .post('/api/super/itemManager/modify', obj)
+          .post('/api/super/itemManager/modify/'+obj._id, obj)
           .then(res => {
             if (res.data.result_code === 'success') {
-              Object.assign(this.desserts[this.editedIndex], this.editedItem)
+              Object.assign(row, obj)
             } 
           }).catch(() => {
             alert('에러')
           })
         } else {
-          this.desserts.push(this.editedItem)
+          var obj = this.editedItem;
+          var row = this.desserts;
+          axios
+          .post('/api/super/itemManager/add', obj)
+          .then(res => {
+            if (res.data.result_code === 'success') {
+              row.unshift(res.data.item)
+            } 
+          }).catch(() => {
+            alert('에러')
+          })
         }
         this.close()
       },
